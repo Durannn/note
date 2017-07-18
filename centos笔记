@@ -1,0 +1,46 @@
+tshark
+tshark -n -t a -R http.request -T fields -T fields -e "frame.time" -e "ip.src" -e "http.host" -e "http.request.method" -e "http.request.uri"
+
+netfilter防火墙  -->iptables 
+iptables -t filter -nvL  （用的最多）主要用来过滤包
+iptables -t nat -nvL
+iptables -t mangle -nvL
+iptables -t filter -I(I插入 D删除) INPUT -p tcp --dport 80 -s 12.12.12.12 -j REJECT   -->拒绝
+
+任务计划 crontab
+crontab -l 查看当前任务计划
+crontab -e 编辑任务计划
+
+ntsysv和chkconfig 配置启动文件
+chkconfig --list 查看
+chkconfig --add xxx  把xxx添加到服务列表
+          --del           删除
+
+系统日志  /var/log/message
+查看系统内核日志	tail /var/log/messages
+查看用户登录历史	last
+查看无效登录历史 	lastb
+获得硬件相关的错误信息	demsg
+
+
+
+find /var/log/ -type f -mtime +10 -exec cp {} {} .bak\;找到十天前的文件并复制成.bak文件
+
+
+
+nohup			screen
+
+
+curl		在命令行访问网页
+curl -I 	不显示html
+curl -x 	代理
+curl -Iv 	查看访问过程
+curl -o xxx 链接  	下载文件并命名为xxx
+
+
+rsync		拷贝数据  支持网络通信  支持增量拷贝（详情man！！！）
+rsync -av	
+rsync --delete	
+rsync --exclude		同步时排除某些文件不同步
+rsync -P 
+rsync -u (--update)
