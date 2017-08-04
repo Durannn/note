@@ -21,4 +21,4 @@ void tst_crol()
 	b = _crol_(a,3);				/*b now is 0x2D*/ 	a循环左移3位
 }
 
-蜂鸣器  P2.3
+蜂鸣器  P2.3口
