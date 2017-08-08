@@ -1,24 +1,39 @@
-锁存器
-锁存器：扩展的功能    --控制数码管  P0口   	D端是输入端		Q端是输出端	
-OE -->Out Enable  输出使能  （上面有杠表示管脚在低电平有效）
-LE -->锁存器的锁存端  LE是高电平时，输出端电平随输入端电平变化而变化。LE是低电平时，无论输入端是什么值，输出端为上一次的值Q0
+##锁存器
+	-锁存器：扩展的功能    --控制数码管  P0口   	D端是输入端		Q端是输出端	
+	-OE -->Out Enable  输出使能  （上面有杠表示管脚在低电平有效）
+	-LE -->锁存器的锁存端  LE是高电平时，输出端电平随输入端电平变化而变化。LE是低电平时，无论输入端是什么值，输出端为上一次的值Q0
 
 www.maxim-ic.com
 www.analog.com
 www.ti.com
 
 crol 循环左移		cror 循环右移
-#include<intrins.h>
-unsigned char _crol_ (unsigned char c,		/*character to rotate left*/ 
-                      unsigned char b);		/*bit positions to rotate */
+	#include<intrins.h>
+	unsigned char _crol_ (unsigned char c,		/*character to rotate left*/ 
+                      	 unsigned char b);		/*bit positions to rotate */
 Example 
-#include<instrins.h>
-void tst_crol()
-{
-	char a;
-	char b;
-	a = 0xA5;
-	b = _crol_(a,3);				/*b now is 0x2D*/ 	a循环左移3位
-}
+	#include<instrins.h>
+	void tst_crol()
+	{
+		char a;
+		char b;
+		a = 0xA5;
+		b = _crol_(a,3);				/*b now is 0x2D*/ 	a循环左移3位
+	}
 
 蜂鸣器  P2.3口
+
+数码管
+	段选：控制数码管亮的内容
+	位选：控制哪一个数码管亮
+	P0口：上拉电阻
+	锁存器控制数码管
+
+中断
+中断的概念
+	CPU在处理某一事件A时，发生了另一事件B请求CPU迅速去处理（中断发生）；
+	CPU暂时中断当前的工作，转去处理事件B（中断相应和中断服务）；
+	待CPU将事件B处理完毕后，再回到原来事件A被中断的地方继续处理事件A（中断返回），这一过程被称为中断。
+	50C51的中断系统有5个中断源（80C52有6个），2个优先级，可实现二级中断嵌套。
+80C51的中断系统结构
+	（P3.2）可由IT0（TCON.0）选择其为低电平有效还是下降沿有效。当CPU检测到P3.2引脚上出现有效的中断信号时，中断标志IE0（TCON.1）置1，向CPU申请中断。
