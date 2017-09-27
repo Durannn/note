@@ -9,3 +9,7 @@
 2.1	UART（Universal Async Receive / Transmic）
 
 2.2 I²C
+	见单片机笔记
+
+2.3 SPI
+	
